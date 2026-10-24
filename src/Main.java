@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main
@@ -10,51 +7,67 @@ public class Main
 
     public static void main(String[] args)
     {
-        boolean isMainMenuRunning = true;
 
-        while (isMainMenuRunning) {
+        boolean isMainRunning = false;
 
-            System.out.println("===========Computer Shop & Printing Station Hybrid POS System===========");
+        while (isMainRunning)
+        {
+            System.out.println("************************************");
+            System.out.println("WELCOME TO POS SYSTEM TERMINAL BASED");
+            System.out.println("************************************");
+            System.out.println("CHOICES: ");
             System.out.println("1. Product Catalog");
             System.out.println("2. Shopping Cart");
-            System.out.println("3. Checkout");
+            System.out.println("3. CheckOut and Payment");
+            System.out.println("4. Receipt and Transaction History");
             System.out.println("5. Exit");
-            System.out.println("4. Transaction");
-            System.out.print("Choose an Option: ");
-            int mainChoice = scanner.nextInt();
 
-            switch (mainChoice)
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+
+            switch (choice)
             {
                 case 1 -> ProductCatalog();
-                case 2 -> System.out.println("2nd method");
-                case 3 -> System.out.println("3rd method");
-                case 4 -> System.out.println("4th method");
-                case 5 -> isMainMenuRunning = false;
-                default -> System.out.println("INVALID CHOICE");
+                case 2 -> System.out.println();
+                case 3 -> System.out.println();
+                case 4 -> System.out.println();
+                case 5 -> isMainRunning = false;
+                default -> System.out.println("INVALID CHOICE!");
             }
-
         }
 
+        scanner.close();
     }
     static String ProductCatalog()
     {
 
+
+        boolean isProductCatalogRunning = true;
+
         Product product = new Product();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(product.ProductListPath)))
+        while(isProductCatalogRunning)
         {
-            String line;
-            while ((line = reader.readLine()) != null)
+
+            System.out.println("**************************");
+            System.out.println("WELCOME TO PRODUCT CATALOG");
+            System.out.println("**************************");
+            System.out.println("1. Display the products");
+            System.out.println("2. Search Product by ID");
+            System.out.println("3. Exit menu");
+
+            System.out.print("Enter your Choice: ");
+            int choice = scanner.nextInt();
+
+            switch (choice)
             {
-                product.products.add(line.trim());
+                case 1 :
+                {
+                    ArrayList<Product> products = ProductCatalog.
+                }
             }
         }
-        catch (FileNotFoundException e)
-        {
-            System.out.println("File not FOUND!");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
 
 
         return "";

@@ -1,21 +1,28 @@
-import java.util.ArrayList;
-import java.util.Random;
+import java.math.BigDecimal;
 
 public class Product {
 
-    private final String viewAllProducts;
-    private double ProductPrice = 0;
-    private int Quantity;
+    private String viewAllProducts;
+    private BigDecimal price;
+    private int quantity;
+    private String ID;
 
-    public Product(String viewAllProducts)
+    public Product(String viewAllProducts, BigDecimal price, int quantity, String ID)
     {
         this.viewAllProducts = viewAllProducts;
-        this.Quantity = Quantity;
-        this.ProductPrice = ProductPrice;
+        this.price = price;
+        this.quantity = quantity;
+        this.ID = ID;
+    }
+    Product()
+    {
+
     }
 
-
-
+    public String viewProducts()
+    {
+        return this.viewAllProducts;
+    }
 
 
 }
