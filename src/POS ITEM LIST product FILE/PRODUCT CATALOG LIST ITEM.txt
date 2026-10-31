@@ -1,12 +1,12 @@
-P042, A4 Paper (Ream), 250.40, 200
-P230, Black Ink Cartridge (Black), 850.30, 252
-P355, Color Ink Cartridge (CMYK Set), 1200.10, 222
-P024, USB Drive 32GB (USB-A), 350.70, 124
-P210, Lamination Film (A4, 100pk), 75.10, 515
-P754, Photopaper (A4, 20pk), 120.00, 220
-P042, Thermal Paper Roll (5pk, POS), 45.20, 843
-P170, CR-R Disk (10pk), 90.20, 562
-P402, HP DeskJet 2330 Printer, 660.50, 351
-P623, SSD 1TB SATA (Samsung), 4500.12, 896
-P932, External HDD 2TB, 3100.21, 20
-P025, Keyboard Cover (Vinter), 420.25, 40
+1042, A4 Paper (Ream), 250.40, 200
+1230, Black Ink Cartridge (Black), 850.30, 252
+1355, Color Ink Cartridge (CMYK Set), 1200.10, 222
+1024, USB Drive 32GB (USB-A), 350.70, 124
+1210, Lamination Film (A4 100pk), 75.10, 515
+1754, Photopaper (A4 20pk), 120.00, 220
+1042, Thermal Paper Roll (5pk POS), 45.20, 843
+1170, CR-R Disk (10pk), 90.20, 562
+1402, HP DeskJet 2330 Printer, 660.50, 351
+1623, SSD 1TB SATA (Samsung), 4500.12, 896
+1932, External HDD 2TB, 3100.21, 20
+1025, Keyboard Cover (Vinter), 420.25, 40

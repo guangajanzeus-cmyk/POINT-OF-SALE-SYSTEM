@@ -5,9 +5,9 @@ public class Product {
     private String viewAllProducts;
     private BigDecimal price;
     private int quantity;
-    private String ID;
+    private int ID;
 
-    public Product(String viewAllProducts, BigDecimal price, int quantity, String ID)
+    public Product(String viewAllProducts, BigDecimal price, int quantity, int ID)
     {
         this.viewAllProducts = viewAllProducts;
         this.price = price;
@@ -22,6 +22,32 @@ public class Product {
     public String viewProducts()
     {
         return this.viewAllProducts;
+    }
+
+    public BigDecimal getviewstockPrice()
+    {
+        return price;
+    }
+    public void setviewstockPrice(BigDecimal price)
+    {
+        this.price = price;
+    }
+
+    public int getQuantity()
+
+    {
+        return quantity;
+    }
+    public void setQuantity(int quantity)
+    {
+        this.quantity = quantity;
+    }
+    public int getID(){
+       return ID;
+    }
+    public void setID(int ID)
+    {
+        this.ID = ID;
     }
 
 
