@@ -4,11 +4,12 @@ import java.util.Scanner;
 public class Main
 {
     static Scanner scanner = new Scanner(System.in);
+    static boolean isMainRunning = true;
+    static Cart cart = new Cart();
 
     public static void main(String[] args)
     {
 
-        boolean isMainRunning = true;
 
         while (isMainRunning)
         {
@@ -31,7 +32,7 @@ public class Main
                     ProductCatalog();
                     break;
                 }
-                case 2 -> System.out.println();
+                case 2 -> ShoppingCart();
                 case 3 -> System.out.println();
                 case 4 -> System.out.println();
                 case 5 -> isMainRunning = false;
@@ -58,6 +59,7 @@ public class Main
             System.out.println("1. Display all products");
             System.out.println("2. Search Product by ID");
             System.out.println("3. Exit menu");
+            System.out.println("4. Exit the Program");
 
             System.out.print("Enter your Choice: ");
             int choice = scanner.nextInt();
@@ -70,7 +72,8 @@ public class Main
                         ArrayList<Product> products = ProductCatalog.viewAllProduct();
                         if (products.isEmpty()) {
                             System.out.println("INVENTORY IS EMPTY");
-                        } else {
+                        }
+                        else {
                             System.out.print("PRODUCTS FOUND!!!\n");
                             System.out.println();
 
@@ -114,10 +117,136 @@ public class Main
 
 
                 }
-                case 3 : isProductCatalogRunning = false;
+                case 3 : {isProductCatalogRunning = false;
+                break;
+                }
+                case 4 : {
+                    isProductCatalogRunning = false;
+                    isMainRunning = false;
+                }
+                default:
+                    System.out.println("INVALID CHOICE");
             }
         }
 
 
+    }
+    static void ShoppingCart()
+    {
+
+        boolean isShoppingCartRunning = true;
+
+        while (isShoppingCartRunning)
+        {
+            System.out.println("*****Welcome to Shopping Cart*****");
+            System.out.println("1. Add a Product to your shopping Cart by ID");
+            System.out.println("2. Remove Product from your Shopping Cart");
+            System.out.println("3. Check Price of the Product by ID");
+            System.out.println("4. Exit the Menu");
+            System.out.println("5. Exit the Program");
+
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+
+
+            switch (choice)
+            {
+                case 1 :
+                {
+                    System.out.print("Enter the ID of the product you want to add in the cart: ");
+                    int addProduct = scanner.nextInt();
+                    System.out.print("Enter how many product you want to buy: ");
+                    int addQuantityItem = scanner.nextInt();
+
+                    Product selectedProduct = ProductCatalog.searchByID(addProduct);
+
+                    if (selectedProduct != null) {
+
+                        cart.addItem(selectedProduct, addQuantityItem);
+
+                        System.out.println("\nProduct add Succesfully!");
+                        System.out.println();
+
+                        System.out.println("PRODUCT ID: " + selectedProduct.getID() + "\n" +
+                                "ITEM: " + selectedProduct.viewProducts() +
+                                "\n" + "PRODUCT PRICE : ₱" + selectedProduct.getviewstockPrice() + "\n");
+                    }
+                    else {
+                        System.out.println("Product not found");
+                    }
+                    break;
+
+                }
+                case 2 :
+                {
+                    System.out.print("Enter the ID of the product you want to remove: ");
+                    int removeProduct = scanner.nextInt();
+
+                    cart.removeItem(removeProduct);
+                    break;
+                }
+                case 3:
+                {
+                    System.out.print("Enter the ID: ");
+                    int checkPrice = scanner.nextInt();
+
+
+                    Product searchID = ProductCatalog.searchByID(checkPrice);
+
+                    if (searchID != null)
+                    {
+                        System.out.println();
+                        System.out.println("PRODUCT FOUND!");
+                        System.out.println("Item: " + searchID.viewProducts() + "\n"
+                        + "Price: " + searchID.getviewstockPrice());
+                        System.out.println();
+                    }
+                    else
+                    {
+                        System.out.println("Product not found!");
+                    }
+                    break;
+
+                }
+                case 4 :
+                {
+                    isShoppingCartRunning = false;
+                    isMainRunning = false;
+                    break;
+                }
+                case 5 :
+                {
+                    isMainRunning = false;
+                }
+                default:
+                    System.out.println("INVALID CHOICE!");
+            }
+        }
+    }
+    static void CheckOut()
+    {
+        boolean isCheckOutRunning = true;
+
+        while (isCheckOutRunning)
+        {
+            System.out.println("*****Ready to Checkout******");
+            System.out.println("1. Display all Cart items");
+            System.out.println("2. Checkout and Payment");
+            System.out.println("3. Exit the Menu");
+            System.out.println("4. Exit the Program");
+
+            System.out.print("Enter your Choice: ");
+            int choice = scanner.nextInt();
+
+            switch (choice)
+            {
+                case 1 :
+                {
+                    ArrayList<> cartItems =
+                }
+            }
+        }
     }
 }

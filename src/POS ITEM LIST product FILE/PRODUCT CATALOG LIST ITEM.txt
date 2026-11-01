@@ -1,4 +1,4 @@
-1042, A4 Paper (Ream), 250.40, 200
+1043, A4 Paper (Ream), 250.40, 200
 1230, Black Ink Cartridge (Black), 850.30, 252
 1355, Color Ink Cartridge (CMYK Set), 1200.10, 222
 1024, USB Drive 32GB (USB-A), 350.70, 124

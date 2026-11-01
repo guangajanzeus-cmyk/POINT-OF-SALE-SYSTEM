@@ -49,11 +49,15 @@ public class ProductCatalog {
     {
         for (Product p : viewAllProduct())
         {
+            //System.out.print("Checking ID: " + p.getID());
             if (p.getID() == id)
             {
                 return p;
             }
         }
-        return searchByID(id);
+        return null;
+    }
+
+    public static void viewAllProduct(Cart cart) {
     }
 }
