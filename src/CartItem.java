@@ -2,7 +2,7 @@ public class CartItem{
     private Product product;
     private int cartQuantity;
     private String viewAllCartItem;
-    CartItem(String viewAllCartItem,Product addProduct, int cartQuantity)
+    CartItem(Product addProduct, int cartQuantity, String viewAllCartItem)
     {
         this.viewAllCartItem = viewAllCartItem;
         this.product = addProduct;

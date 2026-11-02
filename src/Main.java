@@ -32,8 +32,14 @@ public class Main
                     ProductCatalog();
                     break;
                 }
-                case 2 -> ShoppingCart();
-                case 3 -> System.out.println();
+                case 2 -> {
+                    ShoppingCart();
+                    break;
+                }
+                case 3 -> {
+                    CheckOut();
+                    break;
+                }
                 case 4 -> System.out.println();
                 case 5 -> isMainRunning = false;
                 default -> System.out.println("INVALID CHOICE!");
@@ -213,12 +219,12 @@ public class Main
                 case 4 :
                 {
                     isShoppingCartRunning = false;
-                    isMainRunning = false;
                     break;
                 }
                 case 5 :
                 {
                     isMainRunning = false;
+                    isShoppingCartRunning = false;
                 }
                 default:
                     System.out.println("INVALID CHOICE!");
@@ -244,7 +250,19 @@ public class Main
             {
                 case 1 :
                 {
-                    ArrayList<> cartItems =
+                    ArrayList<CartItem> cartItems = Cart.viewAllCartItems();
+                    if (cartItems.isEmpty()) {
+                        System.out.println("Cart Item not Found!");
+                    }
+                    else
+                    {
+                        for (CartItem c : cartItems) {
+                            System.out.println("Cart Items FOUND!!");
+                            System.out.println("PRODUCT ID: " + c.ViewAllCartItem());
+                        }
+                    }
+                    break;
+
                 }
             }
         }

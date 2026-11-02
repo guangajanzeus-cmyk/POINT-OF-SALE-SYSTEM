@@ -1,16 +1,17 @@
-import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Cart {
     private ArrayList<CartItem> cartItems = new ArrayList<>();
 
-    public static ArrayList<CartItem> viewAllCartItems(){}
+    public static ArrayList<CartItem> viewAllCartItems(){
+        return null;
+    }
 
     public Cart() {
     }
-    public void addItem(Product product, int quantity)
+    public void addItem(Product product, int quantity, String viewAllCartItems)
     {
-        CartItem item = new CartItem(product, quantity);
+        CartItem item = new CartItem(product, quantity, viewAllCartItems);
         cartItems.add(item);
     }
     public void removeItem(int productID)
