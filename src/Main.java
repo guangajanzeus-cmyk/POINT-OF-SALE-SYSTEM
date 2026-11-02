@@ -250,18 +250,31 @@ public class Main
             {
                 case 1 :
                 {
-                    ArrayList<CartItem> cartItems = Cart.viewAllCartItems();
+                    ArrayList<CartItem> cartItems = cart.viewAllCartItems();
                     if (cartItems.isEmpty()) {
                         System.out.println("Cart Item not Found!");
                     }
                     else
                     {
+                        System.out.println("*****YOUR SHOPPING CART*****");
+
                         for (CartItem c : cartItems) {
-                            System.out.println("Cart Items FOUND!!");
-                            System.out.println("PRODUCT ID: " + c.ViewAllCartItem());
+
+                            Product product = c.getAddProduct();
+
+                            System.out.println("PRODUCT ID: " + product.getID());
+                            System.out.println("ITEM: " + product.viewProducts());
+                            System.out.println("PRICE: ₱" + product.getviewstockPrice());
+                            System.out.println("QUANTITY: " + c.getCartQuantity());
+
+                            System.out.println("----------------------------------------");
                         }
                     }
                     break;
+
+                }
+                case 2 :
+                {
 
                 }
             }

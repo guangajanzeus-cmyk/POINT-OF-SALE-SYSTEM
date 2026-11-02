@@ -1,17 +1,17 @@
 import java.util.ArrayList;
 
 public class Cart {
-    private ArrayList<CartItem> cartItems = new ArrayList<>();
+    private static ArrayList<CartItem> cartItems = new ArrayList<>();
 
     public static ArrayList<CartItem> viewAllCartItems(){
-        return null;
+        return cartItems;
     }
 
     public Cart() {
     }
-    public void addItem(Product product, int quantity, String viewAllCartItems)
+    public void addItem(Product product, int quantity)
     {
-        CartItem item = new CartItem(product, quantity, viewAllCartItems);
+        CartItem item = new CartItem(product, quantity);
         cartItems.add(item);
     }
     public void removeItem(int productID)
