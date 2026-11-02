@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Cart {
@@ -8,6 +9,7 @@ public class Cart {
     }
 
     public Cart() {
+
     }
     public void addItem(Product product, int quantity)
     {
@@ -31,6 +33,29 @@ public class Cart {
 
         System.out.println("Product not found!!");
 
+    }
+
+    public BigDecimal calculateTotalPrice() {
+        BigDecimal total = BigDecimal.ZERO;
+
+        for (CartItem item : cartItems) {
+            BigDecimal price = item.getAddProduct().getviewstockPrice();
+            int quantity = item.getCartQuantity();
+
+            total = total.add(price.multiply(BigDecimal.valueOf(quantity)));
+        }
+
+        return total;
+    }
+
+    public int calculateTotalQuantity() {
+        int totalQuantity = 0;
+
+        for (CartItem item : cartItems) {
+            totalQuantity += item.getCartQuantity();
+        }
+
+        return totalQuantity;
     }
 
 }

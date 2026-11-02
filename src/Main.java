@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -275,6 +276,34 @@ public class Main
                 }
                 case 2 :
                 {
+                    double CashierMoney = 10000.00;
+
+                    ArrayList<CartItem> cartItem = Cart.viewAllCartItems();
+
+
+                    System.out.println("-----Ready to Checkout-----");
+
+                    System.out.print("Enter your Name: ");
+                    String userName = scanner.nextLine();
+                    System.out.print("Enter your Money: ");
+                    double userMoney = scanner.nextDouble();
+
+                    System.out.println("Name: " + userName);
+                    System.out.println("Money: " + userMoney);
+
+                    for (CartItem cartItem1 : cartItem)
+                    {
+                        Product product = cartItem1.getAddProduct();
+                        System.out.println("PRODUCT ID: " + product.getID());
+                        System.out.println("ITEM: " + product.viewProducts());
+                        System.out.println("PRICE: ₱" + product.getviewstockPrice());
+                        System.out.println("QUANTITY: " + cartItem1.getCartQuantity());
+
+                    }
+                    Product product = cartItem.getFirst().getAddProduct();
+                    if (userMoney.)
+
+
 
                 }
             }
