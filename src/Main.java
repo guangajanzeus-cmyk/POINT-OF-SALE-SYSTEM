@@ -301,7 +301,10 @@ public class Main
 
                     }
                     Product product = cartItem.getFirst().getAddProduct();
-                    if (userMoney.)
+                    if (product.viewProducts().isEmpty())
+                    {
+                        System.out.println("YOUR CART IS EMPTY, CAN'T PROCEED TO CHECKOUT!");
+                    }
 
 
 
