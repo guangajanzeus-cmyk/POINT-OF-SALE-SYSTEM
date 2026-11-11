@@ -321,7 +321,7 @@ public class Main
                         }
                         double tax = subtotal * 0.12;
                         double total = subtotal + tax;
-                        if (userMoney >= total) {
+                        if (userMoney = total) {
                             double change = userMoney - total;
                             int transID = TransactionHistory.getNextTransactionID();
                             Transaction transaction = new Transaction(
