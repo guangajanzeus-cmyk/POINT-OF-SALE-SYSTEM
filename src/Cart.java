@@ -1,5 +1,7 @@
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import model.Product;
+import model.CartItem;
 
 public class Cart {
     private static ArrayList<CartItem> cartItems = new ArrayList<>();
@@ -46,6 +48,10 @@ public class Cart {
         }
 
         return total;
+    }
+
+    public void clearCart() {
+        cartItems.clear();
     }
 
     public int calculateTotalQuantity() {

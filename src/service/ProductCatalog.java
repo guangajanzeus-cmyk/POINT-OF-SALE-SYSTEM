@@ -1,9 +1,12 @@
+package service;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import model.Product;
 
 public class ProductCatalog {
 
@@ -49,7 +52,6 @@ public class ProductCatalog {
     {
         for (Product p : viewAllProduct())
         {
-            //System.out.print("Checking ID: " + p.getID());
             if (p.getID() == id)
             {
                 return p;
@@ -58,6 +60,4 @@ public class ProductCatalog {
         return null;
     }
 
-    public static void viewAllProduct(Cart cart) {
-    }
 }

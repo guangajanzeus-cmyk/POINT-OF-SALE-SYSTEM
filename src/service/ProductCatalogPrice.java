@@ -1,11 +1,12 @@
+package service;
+
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import model.Product;
 
 public class ProductCatalogPrice {
-
 
     public static final ArrayList<Product> viewPrice(Product product)
     {

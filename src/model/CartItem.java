@@ -1,8 +1,10 @@
+package model;
+
 public class CartItem{
     private Product product;
     private int cartQuantity;
     private String viewAllCartItem;
-    CartItem(Product addProduct, int cartQuantity)
+    public CartItem(Product addProduct, int cartQuantity)
     {
         this.product = addProduct;
         this.cartQuantity = cartQuantity;

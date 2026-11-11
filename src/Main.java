@@ -1,6 +1,13 @@
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Scanner;
+import model.Product;
+import model.CartItem;
+import model.Transaction;
+import model.TransactionItem;
+import service.ProductCatalog;
+import service.TransactionHistory;
+import util.Receipt;
 
 public class Main
 {
@@ -41,8 +48,14 @@ public class Main
                     CheckOut();
                     break;
                 }
-                case 4 -> System.out.println();
-                case 5 -> isMainRunning = false;
+                case 4 -> {
+                    ReceiptHistory();
+                    break;
+                }
+                case 5 -> {
+                    isMainRunning = false;
+                    break;
+                }
                 default -> System.out.println("INVALID CHOICE!");
             }
         }
@@ -226,6 +239,7 @@ public class Main
                 {
                     isMainRunning = false;
                     isShoppingCartRunning = false;
+                    break;
                 }
                 default:
                     System.out.println("INVALID CHOICE!");
@@ -246,6 +260,7 @@ public class Main
 
             System.out.print("Enter your Choice: ");
             int choice = scanner.nextInt();
+            scanner.nextLine();
 
             switch (choice)
             {
@@ -276,40 +291,170 @@ public class Main
                 }
                 case 2 :
                 {
-                    double CashierMoney = 10000.00;
+                    ArrayList<CartItem> cartItem = cart.viewAllCartItems();
 
-                    ArrayList<CartItem> cartItem = Cart.viewAllCartItems();
-
-
-                    System.out.println("-----Ready to Checkout-----");
-
-                    System.out.print("Enter your Name: ");
-                    String userName = scanner.nextLine();
-                    System.out.print("Enter your Money: ");
-                    double userMoney = scanner.nextDouble();
-
-                    System.out.println("Name: " + userName);
-                    System.out.println("Money: " + userMoney);
-
-                    for (CartItem cartItem1 : cartItem)
-                    {
-                        Product product = cartItem1.getAddProduct();
-                        System.out.println("PRODUCT ID: " + product.getID());
-                        System.out.println("ITEM: " + product.viewProducts());
-                        System.out.println("PRICE: ₱" + product.getviewstockPrice());
-                        System.out.println("QUANTITY: " + cartItem1.getCartQuantity());
-
-                    }
-                    Product product = cartItem.getFirst().getAddProduct();
-                    if (product.viewProducts().isEmpty())
+                    if (cartItem.isEmpty())
                     {
                         System.out.println("YOUR CART IS EMPTY, CAN'T PROCEED TO CHECKOUT!");
                     }
+                    else
+                    {
+                        System.out.print("Enter your Name: ");
+                        String userName = scanner.nextLine();
+                        System.out.print("Enter your Money: ");
+                        double userMoney = scanner.nextDouble();
 
-
+                        double subtotal = 0;
+                        ArrayList<TransactionItem> transactionItems = new ArrayList<>();
+                        for (CartItem ci : cartItem) {
+                            Product p = ci.getAddProduct();
+                            double itemTotal = p.getviewstockPrice().doubleValue() * ci.getCartQuantity();
+                            subtotal += itemTotal;
+                            TransactionItem ti = new TransactionItem(
+                                    p.getID(),
+                                    p.viewProducts(),
+                                    p.getviewstockPrice().doubleValue(),
+                                    ci.getCartQuantity(),
+                                    itemTotal
+                            );
+                            transactionItems.add(ti);
+                        }
+                        double tax = subtotal * 0.12;
+                        double total = subtotal + tax;
+                        if (userMoney >= total) {
+                            double change = userMoney - total;
+                            int transID = TransactionHistory.getNextTransactionID();
+                            Transaction transaction = new Transaction(
+                                    transID,
+                                    userName,
+                                    transactionItems,
+                                    subtotal,
+                                    tax,
+                                    total,
+                                    userMoney,
+                                    change
+                            );
+                            TransactionHistory.addTransaction(transaction);
+                            Receipt.printReceipt(transaction);
+                            cart.clearCart();
+                        } else {
+                            double remaining = total - userMoney;
+                            System.out.println();
+                            System.out.println("========================================");
+                            System.out.println("        INSUFFICIENT FUNDS              ");
+                            System.out.println("========================================");
+                            System.out.printf("Total Required:    %.2f%n", total);
+                            System.out.printf("Amount Given:      %.2f%n", userMoney);
+                            System.out.printf("Shortfall:         %.2f%n", remaining);
+                            System.out.println("========================================");
+                            System.out.println();
+                        }
+                    }
+                    break;
 
                 }
+                case 3 :
+                {
+                    isCheckOutRunning = false;
+                    break;
+                }
+                case 4 :
+                {
+                    isMainRunning = false;
+                    isCheckOutRunning = false;
+                    break;
+                }
+            }
+        }
+    }
+    static void ReceiptHistory()
+    {
+        boolean isReceiptHistoryRunning = true;
 
+        while (isReceiptHistoryRunning)
+        {
+            System.out.println("**************************************");
+            System.out.println(" RECEIPT & TRANSACTION HISTORY");
+            System.out.println("**************************************");
+            System.out.println("1. View all transactions");
+            System.out.println("2. View transaction by ID");
+            System.out.println("3. Re-print receipt");
+            System.out.println("4. Exit menu");
+            System.out.println("5. Exit program");
+
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+
+            switch (choice)
+            {
+                case 1 :
+                {
+                    ArrayList<Transaction> allTransactions = TransactionHistory.getAllTransactions();
+                    if (allTransactions.isEmpty()) {
+                        System.out.println("No transactions found!");
+                    } else {
+                        System.out.println("TOTAL TRANSACTIONS: " + TransactionHistory.getTransactionCount());
+                        System.out.println();
+                        for (Transaction t : allTransactions) {
+                            System.out.println("Transaction ID: #" + t.getTransactionID());
+                            System.out.println("Date: " + t.getTransactionDate());
+                            System.out.println("Customer: " + t.getCustomerName());
+                            System.out.println("Total: ₱" + t.getTotal());
+                            System.out.println("----------------------------------------");
+                        }
+                    }
+                    break;
+                }
+                case 2 :
+                {
+                    System.out.print("Enter Transaction ID: ");
+                    int searchID = scanner.nextInt();
+                    Transaction found = TransactionHistory.getTransactionByID(searchID);
+                    if (found == null) {
+                        System.out.println("Transaction not found!");
+                    } else {
+                        System.out.println();
+                        System.out.println("Transaction ID: #" + found.getTransactionID());
+                        System.out.println("Date: " + found.getTransactionDate());
+                        System.out.println("Customer: " + found.getCustomerName());
+                        System.out.println("Subtotal: ₱" + found.getSubtotal());
+                        System.out.println("Tax: ₱" + found.getTax());
+                        System.out.println("Total: ₱" + found.getTotal());
+                        System.out.println("Amount Paid: ₱" + found.getAmountPaid());
+                        System.out.println("Change: ₱" + found.getChange());
+                        System.out.println();
+                        System.out.println("Items:");
+                        for (TransactionItem item : found.getItems()) {
+                            System.out.println("  " + item.getProductName() + " x" + item.getQuantity() + " = ₱" + item.getLineTotal());
+                        }
+                    }
+                    break;
+                }
+                case 3 :
+                {
+                    System.out.print("Enter Transaction ID to re-print: ");
+                    int reprintID = scanner.nextInt();
+                    Transaction found = TransactionHistory.getTransactionByID(reprintID);
+                    if (found == null) {
+                        System.out.println("Transaction not found!");
+                    } else {
+                        Receipt.printReceipt(found);
+                    }
+                    break;
+                }
+                case 4 :
+                {
+                    isReceiptHistoryRunning = false;
+                    break;
+                }
+                case 5 :
+                {
+                    isMainRunning = false;
+                    isReceiptHistoryRunning = false;
+                    break;
+                }
+                default:
+                    System.out.println("INVALID CHOICE!");
             }
         }
     }

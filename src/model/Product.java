@@ -1,3 +1,5 @@
+package model;
+
 import java.math.BigDecimal;
 
 public class Product {
@@ -14,7 +16,7 @@ public class Product {
         this.quantity = quantity;
         this.ID = ID;
     }
-    Product()
+    public Product()
     {
 
     }
