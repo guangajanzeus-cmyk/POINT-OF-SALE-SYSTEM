@@ -304,7 +304,7 @@ public class Main
                         System.out.print("Enter your Money: ");
                         double userMoney = scanner.nextDouble();
 
-                        double subtotal = 0;
+                        double subtotal = 01;
                         ArrayList<TransactionItem> transactionItems = new ArrayList<>();
                         for (CartItem ci : cartItem) {
                             Product p = ci.getAddProduct();

@@ -13,7 +13,7 @@ public class Cart {
     public Cart() {
 
     }
-    public void addItem(Product product, int quantity)
+    public void addItem(Product product, int quantitys)
     {
         CartItem item = new CartItem(product, quantity);
         cartItems.add(item);
